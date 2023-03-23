@@ -20,6 +20,13 @@
     button.classList.add("btn", "btn-primary");
     button.textContent = "Добавить дело";
 
+    button.disabled = true; // ЭЛЕМЕНТ ВЫКЛЮЧЕНИЯ КНОПКИ ПРИ ЗАКГРУЗКИ СТРАНИЦИ И ВКЛЮЧЕНИИ ЕЕ ПРИ ЗАПОЛНЕНОМ ИНПУТЕ
+    input.addEventListener("input", function () {
+      if (input.value !== "") {
+        button.disabled = false;
+      }
+    });
+
     buttonWrapper.append(button);
     form.append(input);
     form.append(buttonWrapper);
@@ -74,7 +81,7 @@
     };
   }
 
-  function createTodoApp(container, title = "Список дел") {
+  function createTodoApp(container, title) {
     let todoAppTitle = createAppTitle(title);
     let todoItemForm = createTodoItemForm();
     let todoList = createTodoList();
@@ -109,6 +116,7 @@
 
       // обнуляем значение в поле
       todoItemForm.input.value = "";
+      todoItemForm.button.disabled = true; // ВЫКЛЮЧАЮ КНОПКУ ПОСЛЕ СОЗДАНИЯ UL ЭЛЕМЕТНА СПИСКА
     });
   }
 
